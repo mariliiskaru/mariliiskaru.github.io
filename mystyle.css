@@ -1,0 +1,39 @@
+h1 {
+	/*background-color: yellow;*/
+	color: green;
+	margin-left: 0px;
+	font-family: Arial,Helvetica;
+}
+
+body {
+	font-family: Arial,Helvetica;
+	font-size: 14px;
+	margin-left: 100px;
+	margin-right: 100px;
+	background-image: url("https://i.pinimg.com/originals/93/df/3b/93df3b7ccdb205133908e514ca01e881.png");
+	/*background-image: url("https://img.freepik.com/free-vector/grey-linen-texture-background_1053-253.jpg?size=338&ext=jpg");*/
+	/*veel variante https://www.toptal.com/designers/subtlepatterns/tag/light/page/2/*/
+	}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	border: 1px solid black;
+	font-family: Arial,Helvetica;
+}
+
+th {
+	height: 50px;
+	background-color: #4CAF50;
+	color: white;
+}
+
+th, td {
+	padding: 10px;
+	text-align: left;
+	border: 1px solid black;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+tr:nth-child(odd) {background-color: white;}
+tr:hover {background-color: #FBF6D9;}

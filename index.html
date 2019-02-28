@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>demo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- read in javascript libraries for parsing csv: https://github.com/okfn/csv.js  -->
+<script src="jquery.js"></script> 
+<script src="csv.js"></script>
+</head>
+<body>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<p>
+<h1>Mariliis ja Mait Tarkvaratehnoloogia rakendus</h1>
+
+
+
+Sisesta esimese tulba otsiv väärtus:
+<input type="text" id="filter" onkeypress="return filtreeri2(event)">
+<button type="button" onclick="filtreeri()">filtreeri!</button> 
+<p>
+Otsingu tulemuse ridade arv: 
+
+
+
+<p>
+
+Otsingu tulemus:
+ 
+<div id="result"></div>
+
+<p>
+Andmed võetakse csv failist <a href="data.csv">data.csv</a>.
+<p>
+Programm kasutab <a href="https://github.com/okfn/csv.js">csv.js</a> teeki csv faili parsimiseks ja siis siin
+lehe lähtekoodis olev meie oma <tt>processdata</tt> programm, mida saad ise edasi ehitada.
+<script>
+
+// processdata takes data rows, builds html string and shows it in the div above
+var sisu;
+
+
+function filtreeri() {  
+  sisu=document.getElementById("filter").value;
+  //alert(sisu);
+  drawdata();
+}
+
+function filtreeri2(e) {  
+  sisu=document.getElementById("filter").value;
+  //alert(sisu);
+
+  if (e.keyCode == 13) drawdata();
+}
+
+
+function processdata(rows) {
+  
+  var rownr, colnr, row, el;
+  var result;
+
+
+ 
+  // build the result html string
+  result="<table>";
+  // loop over all rows
+  for(rownr=0; rownr<17914; rownr++) {    //rSows.length
+    row=rows[rownr]; 
+	//console.log(rownr,row[0].toUpperCase());
+	if (rownr==0 || !sisu || row[0].toUpperCase()==sisu.toUpperCase()) {
+		result=result+"\n<tr>";	
+		// loop over columns in one row
+		for(colnr=0; colnr<row.length; colnr++) {
+		  el=row[colnr];		  
+		  if (rownr==0) {
+			result=result+"<th><b>"+el+"</b></th>"; 
+		  } else {
+			result=result+"<td>"+el+"</td>";
+		  }				  
+		}
+		result=result+"</tr>";
+    }		 
+  }
+  // put the result html string into the div on the page
+  //console.log(result);
+  document.getElementById("result").innerHTML=result;  
+}
+
+// take raw csv data, paste it into rows and then call processdata with the result
+// we use the CSV library from https://github.com/okfn/csv.js 
+
+function drawdata() {
+
+	CSV.fetch({
+		// several options to give input, by default we use the file data.csv
+		url: 'data.csv'
+		
+		// alternatively put raw data here like this:
+		//data: "esimene,teine\na,1\nb,2"
+		
+	//"City,Store,Business Area,Main category,Sub category,Product,Discrepancy. pcs,Discreapancy. EUR\n"+
+	//"Tallinn,501 Ulemiste,01 Womens Wear,101 LW Dress,1010 Easy Dress,7637315 Dress Ronja:Black:L, 1,8.85\n"+
+	//"Tallinn,501 Ulemiste,01 Womens Wear,101 LW Dress,1010 Easy Dress,7654425 Dress Lene:Black:Xs, 1,5.98\n"+
+	//"Tallinn,501 Ulemiste,01 Womens Wear,101 LW Dress,1010 Easy Dress,7654434 Dress Lene:Dusty Blue:L, 1,5.98\n"+
+	//"Tallinn,501 Ulemiste,01 Womens Wear,101 LW Dress,1010 Easy Dress,7656941 Dress Idun:Black:S,- 1,-18.78\n"+
+	//"Tallinn,501 Ulemiste,01 Womens Wear,101 LW Dress,1010 Easy Dress,7656942 Dress Idun:Black:M,- 1,-18.78\n"+
+	//"Tallinn,501 Ulemiste,01 Womens Wear,101 LW Dress,1010 Easy Dress,7671418 Dress Inger:Dark Blue:L,- 1,-5.81\n"+
+	//"Tallinn,501 Ulemiste,01 Womens Wear,101 LW Dress,1010 Easy Dress,7718683 Dress Aurora:Light White:M,- 1,-8.70\n"+
+	//"Tallinn,501 Ulemiste,01 Womens Wear,101 LW Dress,1010 Easy Dress,7721318 Dress Alexandra:Dark Navy:M,- 1,-5.52\n"
+		
+		// also an alternative
+		//file: an HTML 5 file object
+		
+		// optional options about structure of the CSV file
+		// following the CSV Dialect Description Format 
+		// https://frictionlessdata.io/specs/csv-dialect/
+		/*
+		dialect: {
+		  ...
+		}
+		*/
+	  }
+	 
+	).done(function(dataset) {  
+	  // console.log(dataset); // optional debugging    
+	  var allrows;
+	  // put the dataset field list and dataset records into one array of all rows
+	  allrows=dataset.records;
+	  allrows.unshift(dataset.fields);  
+	  // call our program for building html
+	  processdata(allrows);
+	});
+}
+drawdata();
+
+</script>
+
+</body>
+</html> 
