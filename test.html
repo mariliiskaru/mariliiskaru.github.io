@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Rakendus</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="initial-scale = 1.0,maximum-scale = 1.0" />
+	
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.8.12/jquery.csv.js"></script>
+	
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/zf-6.4.3/dt-1.10.18/b-1.5.6/r-2.2.2/datatables.min.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/v/zf-6.4.3/dt-1.10.18/b-1.5.6/r-2.2.2/datatables.min.js"></script>
+	
+	
+<style>
+	tr.even {
+    background: aliceblue;
+}
+	
+	tr.odd {
+    background: #e2e2e2;
+}
+</style>	
+		
+
+<script>
+
+$(document).ready(function() {	
+
+$.ajax({
+    url: "data.csv",
+    async: false,
+    success: function (csvd) {
+        var items = $.csv.toArrays(csvd);
+		// console.log(items);
+		drawtable(items);
+    },
+    dataType: "text",
+    complete: function () {
+    }
+});
+	
+function drawtable (items) {
+		 $('#example').DataTable( {
+        data: items,
+		responsive: true, 
+        columns: [
+		{ title: "City" },
+		{ title: "Store" },
+		{ title: "Business Area" },
+		{ title: "Main category" },
+		{ title: "Sub category" },
+		{ title: "Product" },
+		{ title: "Discrepancy. pcs" },
+		{ title: "Discreapancy. EUR" }
+        ]
+    } );
+	
+}	
+	
+} );
+	
+	
+</script>
+	
+</head>
+<body>
+	<table id="example" width="100%"></table>
+	<div id="Bfrtip" width="100%"></div>
+</body>
+<html>
