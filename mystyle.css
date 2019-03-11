@@ -2,11 +2,11 @@ h1 {
 	/*background-color: yellow;*/
 	color: green;
 	margin-left: 0px;
-	font-family: Arial,Helvetica;
+	font-family: Oswald, Arial, Helvetica;
 }
 
 body {
-	font-family: Arial,Helvetica;
+	font-family: Oswald, Arial, Helvetica;
 	font-size: 14px;
 	margin-left: 100px;
 	margin-right: 100px;
@@ -18,9 +18,11 @@ body {
 table {
 	border-collapse: collapse;
 	width: 100%;
-	border: 1px solid black;
-	font-family: Arial,Helvetica;
+	border: 0px solid black;
+	font-family: Oswald,Arial,Helvetica;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
+
 
 th {
 	height: 50px;
