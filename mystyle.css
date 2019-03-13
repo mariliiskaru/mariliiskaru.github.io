@@ -22,6 +22,10 @@ table {
 	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
+table tbody, table tfoot, table thead {
+    border: 0px solid #f1f1f1;
+    background-color: #fefefe;
+}
 
 th {
 	height: 50px;
