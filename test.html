@@ -35,7 +35,7 @@ $.ajax({
 });
 	
 function drawtable (items) {
-		 $('#example').DataTable( {
+	var table = $('#example').DataTable( {
         data: items,
 		responsive: true, 
 		"language": {
@@ -53,6 +53,18 @@ function drawtable (items) {
         ]
     } );
 	
+	
+ table.on( 'draw', function () {
+		$( ".header" ).animate({
+    height: 75
+  }, 1000, function() {
+    		$( ".header" ).removeClass( "loading" ).addClass( "ready" ).delay( 3000 );
+			$( ".lds-hourglass" ).hide().delay( 3000 );
+  });
+		
+} );
+	
+	
 }	
 	
 } );
@@ -62,11 +74,9 @@ function drawtable (items) {
 	
 </head>
 <body>
-
 	
-<h1>Mariliis ja Mait Tarkvaratehnoloogia rakendus</h1>
-	
-	
+<div class="header loading"><div class="logo"><h1>Mariliis ja Mait Tarkvaratehnoloogia rakendus</h1></div> <div class="lds-hourglass"></div></div>
+		
 	<table id="example" width="100%"></table>
 	<div id="Bfrtip" width="100%"></div>
 </body>
