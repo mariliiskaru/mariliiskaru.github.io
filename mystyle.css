@@ -1,6 +1,5 @@
 h1 {
 	/*background-color: yellow;*/
-	color: green;
 	margin-left: 0px;
 	font-family: Oswald, Arial, Helvetica;
 }
@@ -8,8 +7,8 @@ h1 {
 body {
 	font-family: Oswald, Arial, Helvetica;
 	font-size: 14px;
-	margin-left: 100px;
-	margin-right: 100px;
+	margin-left: 0px;
+	margin-right: 0px;
 	background-image: url("https://i.pinimg.com/originals/93/df/3b/93df3b7ccdb205133908e514ca01e881.png");
 	/*background-image: url("https://img.freepik.com/free-vector/grey-linen-texture-background_1053-253.jpg?size=338&ext=jpg");*/
 	/*veel variante https://www.toptal.com/designers/subtlepatterns/tag/light/page/2/*/
@@ -26,7 +25,7 @@ table {
 
 th {
 	height: 50px;
-	background-color: #4CAF50;
+	background-color: #1779ba;
 	color: white;
 }
 
@@ -37,7 +36,7 @@ th, td {
 }
 
 .pagination .current {
-    background: #4caf50;
+    background: #1779ba;
 }
 
 tr:nth-child(even) {background-color: #f2f2f2;}
